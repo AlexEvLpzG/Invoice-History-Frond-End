@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import Author from "../shared/global.types";
+import Author from "../../shared/global.types";
 
 @Component({
     selector: 'app-footer',
