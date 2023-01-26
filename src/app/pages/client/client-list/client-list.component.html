@@ -20,7 +20,16 @@
 
             <tbody class="text-center">
                 <tr *ngFor="let client of clientList">
-                    <td>{{ client.id }}</td>
+                    <td>
+                        <img *ngIf="client.photo"
+                             src="http://localhost:8080/v1/clients/uploads/img/{{client.photo}}"
+                             alt="{{ client.photo }}" class="img-thumbnail rounded"
+                             style="width: 36px; cursor: pointer"/>
+                        <img *ngIf="!client?.photo"
+                             src="http://localhost:8080/v1/clients/uploads/img/no-usuario.png"
+                             alt="not photo" class="img-thumbnail rounded"
+                             style="width: 36px; cursor: pointer"/>
+                    </td>
                     <td>{{ client.name }}</td>
                     <td>{{ client.lastName }}</td>
                     <td>{{ client.email }}</td>
@@ -41,5 +50,7 @@
                 </tr>
             </tbody>
         </table>
+
+        <app-paginator *ngIf="paginator" [paginator]="paginator"></app-paginator>
     </div>
 </div>

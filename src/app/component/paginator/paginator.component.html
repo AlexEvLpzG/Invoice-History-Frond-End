@@ -1,0 +1,50 @@
+<ul *ngIf="pages.length > 0" class="pagination">
+    <li [ngClass]="paginator.first ? 'disabled page-item' : 'page-item'">
+        <a class="page-link" [routerLink]="['/client-list/page', 0]">First</a>
+    </li>
+
+    <li [ngClass]="paginator.first ? 'disabled page-item' : 'page-item'">
+        <a
+            class="page-link"
+            [routerLink]="['/client-list/page', paginator.number - 1]"
+        >
+            &laquo;
+        </a>
+    </li>
+
+    <li
+        class="page-item"
+        *ngFor="let page of pages"
+        [ngClass]="page - 1 == paginator.number? 'active' : ''"
+    >
+        <span
+            class="page-link"
+            *ngIf="page - 1 == paginator.number"
+        >
+            {{ page }}
+        </span>
+
+        <a
+            class="page-link"
+            *ngIf="page - 1 != paginator.number"
+            [routerLink]="['/client-list/page', page - 1]"
+        >
+            {{ page }}
+        </a>
+    </li>
+
+    <li [ngClass]="paginator.last ? 'disabled page-item' : 'page-item'">
+        <a class="page-link" [routerLink]="['/client-list/page', paginator.number + 1]">
+            &raquo;
+        </a>
+    </li>
+
+    <li [ngClass]="paginator.last ? 'disabled page-item' : 'page-item'">
+        <a
+            class="page-link"
+            [routerLink]="['/client-list/page', paginator.totalPages - 1]"
+        >
+            Last
+        </a>
+    </li>
+</ul>
