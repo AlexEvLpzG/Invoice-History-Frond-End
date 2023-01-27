@@ -1,9 +1,13 @@
-<div class="card">
+<div class="card mt-4">
     <div class="card-header text-center">
         <h5 class="mt-1 text-secondary">Client List</h5>
     </div>
 
     <div class="card-body text-dark">
+        <div class="my-2 text-right">
+            <button class="btn btn-rounded btn-success" type="button" [routerLink] = "['/client-form']">Create client</button>
+        </div>
+
         <div *ngIf="clientList.length == 0" class="alert alert-warning">
             No records in the database
         </div>
@@ -41,7 +45,7 @@
                             <button type="button" class="btn btn-success">
                                 Add Invoice
                             </button>
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary" [routerLink]="'/client-form/' + client.id">
                                 Update
                             </button>
                             <button type="button" name="delete" class="btn btn-danger" (click)='deleteClient(client)'>

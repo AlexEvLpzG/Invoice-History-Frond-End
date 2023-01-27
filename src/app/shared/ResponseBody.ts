@@ -3,5 +3,5 @@ export interface ResponseBody<T> {
     httpCode: number,
     httpStatus: string,
     message: string,
-    data: T[] | T
+    data: T
 }

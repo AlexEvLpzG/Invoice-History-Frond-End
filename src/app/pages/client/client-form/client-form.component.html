@@ -1,0 +1,157 @@
+<div class="card w-75 d-flex mx-auto mt-4">
+    <div class="card-header">
+        <h5 class="mt-1 text-center text-secondary">{{ title }}</h5>
+    </div>
+
+    <div class="card-body">
+        <form #clientForm="ngForm" class="mx-4">
+            <div class="mb-4">
+                <div>
+                    <label
+                        for="name"
+                        class="form-label"
+                    >
+                        Name
+                    </label>
+
+                    <div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="client.name"
+                            name="name"
+                            #name="ngModel"
+                            id="name"
+                        >
+
+                        <div
+                            class="alert alert-danger"
+                            *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <div *ngIf="name.errors?.['required']">
+                                Name is required
+                            </div>
+                            <div *ngIf="name.errors?.['minlength']">
+                                Name must be at least 4 characters long
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="lastName" class="form-label">Last Name</label>
+                <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="client.lastName"
+                        name="lastName"
+                        #lastName="ngModel"
+                        id="lastName"
+                    >
+
+                    <div
+                        class="alert alert-danger"
+                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                        <div *ngIf="lastName.errors?.['required']">
+                            Last Name is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="form-label">Email</label>
+                <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="client.email"
+                        name="email"
+                        #email="ngModel"
+                        id="email"
+                    >
+
+                    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors?.['required']">
+                            Email is required
+                        </div>
+                        <div *ngIf="email.errors?.['email']">
+                            Email does not have the correct format
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5" *ngIf="client.id != 0">
+                <div class="col">
+                    <label
+                        for="createAt"
+                        class="form-label"
+                    >
+                        Date
+                    </label>
+
+                    <div>
+                        <input
+                            type="date"
+                            class="form-control"
+                            [(ngModel)]="client.createAt"
+                            name="createAt"
+                            id="createAt"
+                        >
+                    </div>
+                </div>
+
+                <div class="col">
+                    <label
+                        for="region"
+                        class="form-label"
+                    >
+                        Region
+                    </label>
+
+                    <div>
+                        <select
+                            [(ngModel)]="client.region.id"
+                            class="form-control"
+                            name="region"
+                            id="region"
+                        >
+                            <option [ngValue]="0">Select region</option>
+                            <option
+                                *ngFor="let region of regions"
+                                [ngValue]="region.id"
+                            >
+                                {{ region.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button
+                    class="btn btn-success btn-block mb-4"
+                    role="button"
+                    *ngIf="!client.id else elseBlock"
+                    [disabled]="!clientForm.form.valid"
+                    (click)='saveClient()'
+                >
+                    Create
+                </button>
+
+                <ng-template #elseBlock>
+                    <button
+                        class="btn btn-primary btn-block mb-4"
+                        role="button"
+                        [disabled]="!clientForm.form.valid"
+                        (click)='updateClient()'
+                    >
+                        Update
+                    </button>
+                </ng-template>
+            </div>
+        </form>
+    </div>
+</div>

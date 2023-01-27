@@ -53,7 +53,7 @@ export class ClientListComponent {
                         this.ngOnInit();
                         Swal.fire(
                             response.message,
-                            `Client ${client.name} successfully removed`,
+                            `Client ${response.data.name} successfully removed`,
                             'success'
                         ).then();
                     },

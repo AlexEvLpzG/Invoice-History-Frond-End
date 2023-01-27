@@ -1,3 +1,5 @@
+import Region from './Region';
+
 interface Client {
     id: number,
     name: string,
@@ -5,6 +7,7 @@ interface Client {
     createAt: string,
     email: string,
     photo: string,
+    region: Region
 }
 
 
