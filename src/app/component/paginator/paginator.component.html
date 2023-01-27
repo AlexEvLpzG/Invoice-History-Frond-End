@@ -1,4 +1,4 @@
-<ul *ngIf="pages.length > 0" class="pagination">
+<ul *ngIf="pages.length > 0" class="pagination justify-content-center">
     <li [ngClass]="paginator.first ? 'disabled page-item' : 'page-item'">
         <a class="page-link" [routerLink]="['/client-list/page', 0]">First</a>
     </li>

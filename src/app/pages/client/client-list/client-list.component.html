@@ -1,5 +1,7 @@
 <div class="card">
-    <div class="card-header text-center">Client list</div>
+    <div class="card-header text-center">
+        <h5 class="mt-1 text-secondary">Client List</h5>
+    </div>
 
     <div class="card-body text-dark">
         <div *ngIf="clientList.length == 0" class="alert alert-warning">
@@ -23,7 +25,7 @@
                     <td>
                         <img *ngIf="client.photo"
                              src="http://localhost:8080/v1/clients/uploads/img/{{client.photo}}"
-                             alt="{{ client.photo }}" class="img-thumbnail rounded"
+                             alt="{{ client.photo }}" class="img-thumbnail rounded-circle"
                              style="width: 36px; cursor: pointer"/>
                         <img *ngIf="!client?.photo"
                              src="http://localhost:8080/v1/clients/uploads/img/no-usuario.png"
@@ -42,7 +44,7 @@
                             <button type="button" class="btn btn-primary">
                                 Update
                             </button>
-                            <button type="button" class="btn btn-danger">
+                            <button type="button" name="delete" class="btn btn-danger" (click)='deleteClient(client)'>
                                 Delete
                             </button>
                         </div>
