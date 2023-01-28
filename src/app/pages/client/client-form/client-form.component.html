@@ -22,6 +22,7 @@
                             name="name"
                             #name="ngModel"
                             id="name"
+                            required
                         >
 
                         <div
@@ -48,6 +49,7 @@
                         name="lastName"
                         #lastName="ngModel"
                         id="lastName"
+                        required
                     >
 
                     <div
@@ -70,6 +72,8 @@
                         name="email"
                         #email="ngModel"
                         id="email"
+                        required
+                        email
                     >
 
                     <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -83,26 +87,7 @@
                 </div>
             </div>
 
-            <div class="row mb-5" *ngIf="client.id != 0">
-                <div class="col">
-                    <label
-                        for="createAt"
-                        class="form-label"
-                    >
-                        Date
-                    </label>
-
-                    <div>
-                        <input
-                            type="date"
-                            class="form-control"
-                            [(ngModel)]="client.createAt"
-                            name="createAt"
-                            id="createAt"
-                        >
-                    </div>
-                </div>
-
+            <div class="row mb-5">
                 <div class="col">
                     <label
                         for="region"
@@ -128,6 +113,8 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="col"></div>
             </div>
 
             <div>

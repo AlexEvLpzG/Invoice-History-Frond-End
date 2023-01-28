@@ -15,7 +15,6 @@ import Swal from "sweetalert2";
 export class ClientFormComponent {
     public client: Client = { id: 0, name: '', lastName: '', email:'', photo:'', createAt: '', region: { id: 0, name: '' } };
     public title: string = "Create User";
-    public errorList?: ResponseError<Error[]>;
     public regions: Region[] = [];
 
     constructor(
@@ -35,9 +34,18 @@ export class ClientFormComponent {
             if (params[ 'id' ]) {
                 this.title = 'Update Client';
                 this.clientService.getClientById(params[ 'id' ])
-                    .subscribe(( response ) => {
-                        this.client = response.data as client;
-                        this.client.region = this.client.region || { id: 0, name: '' }
+                    .subscribe({
+                        next: ( response ) => {
+                            this.client = response.data as client;
+                            this.client.region = this.client.region || { id: 0, name: '' }
+                        }, error: () => {
+                            Swal.fire(
+                                'Error',
+                                'Error Found Client',
+                                'error'
+                            ).then();
+                            this.route.navigate(['/client-list']).then();
+                        }
                     });
             }
         });
@@ -52,12 +60,20 @@ export class ClientFormComponent {
     public saveClient(): void {
         this.clientService.createClient(this.client)
             .subscribe({
-                next: () => {
-                    if (this.client.region.id != 0) {
-                        this.clientService.setRegionToClient(this.client.id, this.client.region)
-                            .subscribe();
-                    }
-                    this.route.navigate(['/client-list']);
+                next: ( response ) => {
+                    Swal.fire(
+                        response.message,
+                        `Client ${response.data.name} successfully Created`,
+                        'success'
+                    ).then();
+                    this.route.navigate(['/client-list']).then();
+                },
+                error: () => {
+                    Swal.fire(
+                        'Error',
+                        'Error Check Inputs filed',
+                        'error'
+                    ).then();
                 }
             });
     }
@@ -81,15 +97,12 @@ export class ClientFormComponent {
                 if( result.isConfirmed ){
                     this.clientService.updateClientById( this.client ).subscribe({
                         next: (response) => {
-                            if (this.client.region.id !== 0) {
-                                this.clientService.setRegionToClient(response.data.id, this.client.region).subscribe();
-                            }
                             Swal.fire(
                                 response.message,
                                 `Client ${response.data.name} successfully updated`,
                                 'success'
                             ).then();
-                            this.route.navigate(['/client-list']);
+                            this.route.navigate(['/client-list']).then();
                         },
                         error: () => {
                             Swal.fire(

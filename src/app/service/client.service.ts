@@ -29,8 +29,4 @@ export class ClientService {
     public deleteClientById(idClient: number): Observable<ResponseBody<Client>> {
         return this.httpClient.delete<ResponseBody<Client>>(`${ URL_SERVICE }/clients/${ idClient }`);
     }
-
-    public setRegionToClient(idClient: number, region: Region): Observable<ResponseBody<Client>> {
-        return this.httpClient.patch<ResponseBody<Client>>(`${ URL_SERVICE }/clients/${ idClient }/region`, region);
-    }
 }
