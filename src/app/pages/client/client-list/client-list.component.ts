@@ -1,23 +1,25 @@
-import { Component } from '@angular/core';
-import Client from "../../../shared/Client";
+import {Component, OnInit} from '@angular/core';
+import { Client, clientInitialState } from "../../../shared/Client";
 import Swal from 'sweetalert2';
 import { ClientService } from "../../../service/client.service";
 import { tap } from "rxjs";
 import {ActivatedRoute} from "@angular/router";
-import {ResponseBody} from "../../../shared/ResponseBody";
+import {ModalService} from "../../../service/modal.service";
 
 @Component({
     selector: 'app-client-list',
     templateUrl: './client-list.component.html'
 })
-export class ClientListComponent {
+export class ClientListComponent implements OnInit {
     private page: number = 0;
     public clientList: Client[] = [];
     public paginator: any;
+    public selectedClient: Client = clientInitialState;
 
     constructor(
         private activateRoute: ActivatedRoute,
-        private clientService: ClientService
+        private clientService: ClientService,
+        private modalService: ModalService
     ) {}
 
     public ngOnInit(): void {
@@ -29,6 +31,16 @@ export class ClientListComponent {
                     this.paginator = response;
                 }))
                 .subscribe();
+        });
+
+        this.modalService.notifyUpload.subscribe(client => {
+            this.clientList = this.clientList.map(originalClient => {
+                if(client.id == originalClient.id)
+                {
+                    originalClient.photo = client.photo;
+                }
+                return originalClient;
+            });
         });
     }
 
@@ -67,5 +79,10 @@ export class ClientListComponent {
                 });
             }
         });
+    }
+
+    public openModal(client: Client): void {
+        this.selectedClient = client;
+        this.modalService.openModal();
     }
 }

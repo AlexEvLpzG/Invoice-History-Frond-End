@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import URL_SERVICE from "../shared/helper";
 import {ResponseBody} from "../shared/ResponseBody";
-import Client from "../shared/Client";
+import { Client } from "../shared/Client";
 import Region from "../shared/Region";
 
 @Injectable({ providedIn: 'root' })

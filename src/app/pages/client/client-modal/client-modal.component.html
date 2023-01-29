@@ -1,0 +1,100 @@
+<div class="open-modal animation fadeIn" *ngIf="modalService.isOpen">
+    <div class="modal" tabindex="-1" role="dialog" style="display: block;">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ title }}</h5>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <ul class="list-group text-dark mb-3" *ngIf="client">
+                                    <li class="list-group-item active">{{ client.name }}</li>
+                                    <li class="list-group-item">{{ client.lastName }}</li>
+                                    <li class="list-group-item">{{ client.email }}</li>
+                                    <li class="list-group-item">{{ client.createAt | date:"fullDate" }}</li>
+                                    <li class="list-group-item">{{ client.region.name }}</li>
+                                </ul>
+
+                                <div class="input-group mb-3">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                                    <label class="custom-file-label" for="inputGroupFile04">Select phone</label>
+                                </div>
+
+                                <div class="input-group-append">
+                                    <button [disabled]="!selectedPhoto" class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Upload</button>
+                                </div>
+                            </div>
+
+                            <div *ngIf="progress > 0" class="progress" style="height: 40px;">
+                                <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width: progress+'%'}" [attr.aria-valuenow]="progress" aria-valuemin="0" aria-valuemax="100">
+                                    {{ progress }}%
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm" *ngIf="client.photo">
+                            <img src="http://localhost:8080/v1/clients/uploads/img/{{ client.photo }}" alt="{{ client.photo }}" class="img-thumbnail rounded" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <td>
+                            <button class="btn btn-success btn-sm" type="button">
+                                Create Invoice
+                            </button>
+                        </td>
+                    </div>
+
+                    <div class="row">
+                        <div *ngIf="client.invoiceList.length == 0" class="alert alert-info my-4">
+                            No invoices assigned to the customer {{ client.name }} {{ client.lastName }}
+                        </div>
+
+                        <table *ngIf="client.invoiceList.length > 0" class="table table-bordered table-striped my-4">
+                            <thead>
+                            <th>Folio</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Option</th>
+                            </thead>
+
+                            <tbody>
+                            <tr *ngFor="let invoice of client.invoiceList">
+                                <td>{{ invoice.id }}</td>
+                                <td>{{ invoice.description }}</td>
+                                <td>{{ invoice.createAt }}</td>
+                                <td>${{ 800 }}</td>
+                                <td>
+                                    <div class="btn-group btn-group-sm m-1 border-0">
+                                        <button class="btn btn-primary btn-sm" type="button">
+                                            Ver
+                                        </button>
+
+                                        <button class="btn btn-danger btn-sm" type="button">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

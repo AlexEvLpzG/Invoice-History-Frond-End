@@ -1,3 +1,5 @@
+<app-client-modal *ngIf="selectedClient" [client]="selectedClient"></app-client-modal>
+
 <div class="card mt-4">
     <div class="card-header text-center">
         <h5 class="mt-1 text-secondary">Client List</h5>
@@ -30,11 +32,11 @@
                         <img *ngIf="client.photo"
                              src="http://localhost:8080/v1/clients/uploads/img/{{client.photo}}"
                              alt="{{ client.photo }}" class="img-thumbnail rounded-circle"
-                             style="width: 36px; cursor: pointer"/>
+                             style="width: 36px; cursor: pointer" (click)="openModal(client)"/>
                         <img *ngIf="!client?.photo"
                              src="http://localhost:8080/v1/clients/uploads/img/no-usuario.png"
                              alt="not photo" class="img-thumbnail rounded"
-                             style="width: 36px; cursor: pointer"/>
+                             style="width: 36px; cursor: pointer" (click)="openModal(client)"/>
                     </td>
                     <td>{{ client.name }}</td>
                     <td>{{ client.lastName }}</td>

@@ -11,6 +11,7 @@ import { FooterComponent } from "./component/footer/footer.component";
 import { ClientListComponent } from './pages/client/client-list/client-list.component';
 import { PaginatorComponent } from './component/paginator/paginator.component';
 import { ClientFormComponent } from './pages/client/client-form/client-form.component';
+import { ClientModalComponent } from './pages/client/client-modal/client-modal.component';
 
 const routes: Routes = [
     {path: 'client-list', component: ClientListComponent},
@@ -26,7 +27,8 @@ const routes: Routes = [
           FooterComponent,
           ClientListComponent,
           PaginatorComponent,
-          ClientFormComponent
+          ClientFormComponent,
+          ClientModalComponent
     ],
     imports: [
         BrowserModule,

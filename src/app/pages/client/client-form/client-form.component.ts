@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import Client from "../../../shared/Client";
+import { Component, OnInit } from '@angular/core';
+import { Client, clientInitialState } from "../../../shared/Client";
 import Region from "../../../shared/Region";
 import { ClientService } from "../../../service/client.service";
 import { ActivatedRoute, Router } from "@angular/router";
-import client from "../../../shared/Client";
-import { ResponseError } from "../../../shared/ResponseError";
 import { RegionService } from "../../../service/region.service";
 import Swal from "sweetalert2";
 
@@ -12,8 +10,8 @@ import Swal from "sweetalert2";
     selector: 'app-client-form',
     templateUrl: './client-form.component.html',
 })
-export class ClientFormComponent {
-    public client: Client = { id: 0, name: '', lastName: '', email:'', photo:'', createAt: '', region: { id: 0, name: '' } };
+export class ClientFormComponent implements OnInit {
+    public client: Client = clientInitialState;
     public title: string = "Create User";
     public regions: Region[] = [];
 
@@ -36,7 +34,7 @@ export class ClientFormComponent {
                 this.clientService.getClientById(params[ 'id' ])
                     .subscribe({
                         next: ( response ) => {
-                            this.client = response.data as client;
+                            this.client = response.data as Client;
                             this.client.region = this.client.region || { id: 0, name: '' }
                         }, error: () => {
                             Swal.fire(
