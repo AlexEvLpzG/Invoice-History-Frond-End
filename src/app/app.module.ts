@@ -14,6 +14,7 @@ import { ClientFormComponent } from './pages/client/client-form/client-form.comp
 import { ClientModalComponent } from './pages/client/client-modal/client-modal.component';
 import { ClientInfoComponent } from './pages/client/client-info/client-info.component';
 import { CurrencyMexPipePipe } from './pipe/currency-mex-pipe.pipe';
+import { InvoiceInfoComponent } from './pages/invoice/invoice-info/invoice-info.component';
 
 const routes: Routes = [
     {path: 'client-list', component: ClientListComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'client-form', component: ClientFormComponent},
     {path: 'client-form/:id', component: ClientFormComponent},
     {path: 'client-info/:id', component: ClientInfoComponent},
+    {path: 'invoice-info/:idInvoice', component: InvoiceInfoComponent},
 ]
 
 @NgModule({
@@ -33,7 +35,8 @@ const routes: Routes = [
           ClientFormComponent,
           ClientModalComponent,
           ClientInfoComponent,
-          CurrencyMexPipePipe
+          CurrencyMexPipePipe,
+          InvoiceInfoComponent
     ],
     imports: [
         BrowserModule,

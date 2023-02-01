@@ -1,3 +1,5 @@
+import {Client, clientInitialState} from "./Client";
+
 interface Product {
     id: number;
     name: number,
@@ -17,7 +19,7 @@ interface Invoice {
     observation: string,
     createAt: string,
     items: Item[],
-
+    client: Client,
     total: number;
 }
 
@@ -33,4 +35,14 @@ const calculateAmount = (item: Item): number => {
     return item.quantity * item.product.price;
 }
 
-export { Product, Item, Invoice, calculateTotal, calculateAmount };
+const invoiceInitialState: Invoice = {
+    id: 0,
+    description: '',
+    observation: '',
+    createAt: '',
+    items: [],
+    client: clientInitialState,
+    total: 0
+}
+
+export { Product, Item, Invoice, calculateTotal, calculateAmount, invoiceInitialState };
