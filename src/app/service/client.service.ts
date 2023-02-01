@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
 import { Observable } from "rxjs";
 import URL_SERVICE from "../shared/helper";
 import {ResponseBody} from "../shared/ResponseBody";
@@ -28,5 +28,21 @@ export class ClientService {
 
     public deleteClientById(idClient: number): Observable<ResponseBody<Client>> {
         return this.httpClient.delete<ResponseBody<Client>>(`${ URL_SERVICE }/clients/${ idClient }`);
+    }
+
+    public uploadPhotoByClientId(idClient: number, file: File): Observable<HttpEvent<{}>> {
+        let formData = new FormData();
+        formData.append('id', idClient.toString() );
+        formData.append('file', file);
+
+        const request = new HttpRequest(
+            'PATCH',
+            `${ URL_SERVICE }/clients/uploads`,
+            formData, {
+                reportProgress: true
+            }
+        );
+
+        return this.httpClient.request(request);
     }
 }
