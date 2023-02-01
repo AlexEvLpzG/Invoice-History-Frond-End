@@ -12,12 +12,15 @@ import { ClientListComponent } from './pages/client/client-list/client-list.comp
 import { PaginatorComponent } from './component/paginator/paginator.component';
 import { ClientFormComponent } from './pages/client/client-form/client-form.component';
 import { ClientModalComponent } from './pages/client/client-modal/client-modal.component';
+import { ClientInfoComponent } from './pages/client/client-info/client-info.component';
+import { CurrencyMexPipePipe } from './pipe/currency-mex-pipe.pipe';
 
 const routes: Routes = [
     {path: 'client-list', component: ClientListComponent},
     {path: 'client-list/page/:page', component: ClientListComponent},
     {path: 'client-form', component: ClientFormComponent},
     {path: 'client-form/:id', component: ClientFormComponent},
+    {path: 'client-info/:id', component: ClientInfoComponent},
 ]
 
 @NgModule({
@@ -28,7 +31,9 @@ const routes: Routes = [
           ClientListComponent,
           PaginatorComponent,
           ClientFormComponent,
-          ClientModalComponent
+          ClientModalComponent,
+          ClientInfoComponent,
+          CurrencyMexPipePipe
     ],
     imports: [
         BrowserModule,

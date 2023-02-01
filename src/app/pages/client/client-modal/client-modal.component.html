@@ -72,7 +72,11 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button class="btn btn-outline-primary" type="button">
+                    <button
+                        class="btn btn-outline-primary"
+                        type="button"
+                        [routerLink]="['/client-info/', client.id]"
+                    >
                         More Information
                     </button>
                 </div>

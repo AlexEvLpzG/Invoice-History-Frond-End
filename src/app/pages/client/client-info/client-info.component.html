@@ -1,0 +1,59 @@
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header text-center">Client details</div>
+
+        <div class="card-body">
+            <ul class="list-group">
+                <ul class="list-group text-dark mb-3" *ngIf="client">
+                    <li class="list-group-item active text-center">{{ client.name }} {{ client.lastName }} Information</li>
+                    <li class="list-group-item">Name: {{ client.name }}</li>
+                    <li class="list-group-item">Last Name: {{ client.lastName }}</li>
+                    <li class="list-group-item">Email: {{ client.email }}</li>
+                    <li class="list-group-item">Registration date: {{ client.createAt | date:"fullDate" }}</li>
+                    <li class="list-group-item">Region: {{ client.region.name }}</li>
+                </ul>
+            </ul>
+
+            <button class="btn btn-success btn-sm mb-2" type="button">
+                Creat Invoice
+            </button>
+
+            <div>
+                <div *ngIf="client.invoiceList.length == 0" class="alert alert-warning my-4">
+                    No invoices assigned to the customer {{ client.name }} {{ client.lastName }}
+                </div>
+            </div>
+
+            <table *ngIf="client.invoiceList.length > 0" class="table table-bordered table-striped mb-2">
+                <thead class="text-white text-center thead-dark">
+                    <th>Folio</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Observation</th>
+                    <th>Actions</th>
+                </thead>
+
+                <tbody class="text-center">
+                    <tr *ngFor="let invoice of client.invoiceList">
+                        <td>{{ invoice.id }}</td>
+                        <td>{{ invoice.description }}</td>
+                        <td>{{ invoice.createAt }}</td>
+                        <td>{{ getTotal(invoice) | currencyMexPipe }} </td>
+                        <td>{{ invoice.observation || 'No observations' }}</td>
+                        <td>
+                            <div class="btn-group btn-group-sm m-1 border-0">
+                                <button type="button" class="btn btn-primary">
+                                    View
+                                </button>
+                                <button type="button" name="delete" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
