@@ -2,7 +2,7 @@ import {Client, clientInitialState} from "./Client";
 
 interface Product {
     id: number;
-    name: number,
+    name: string,
     price: number,
     createAt: string
 }

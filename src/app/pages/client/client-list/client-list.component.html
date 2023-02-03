@@ -44,7 +44,7 @@
                     <td>{{ client.createAt | date: "EEEE dd MMMM yyyy" }}</td>
                     <td>
                         <div class="btn-group btn-group-sm m-1 border-0">
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-success" [routerLink]="'/invoice-form/' + client.id">>
                                 Add Invoice
                             </button>
                             <button type="button" class="btn btn-primary" [routerLink]="'/client-form/' + client.id">

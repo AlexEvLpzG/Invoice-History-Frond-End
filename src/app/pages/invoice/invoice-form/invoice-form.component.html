@@ -1,0 +1,115 @@
+<div class="card bg-light">
+    <div class="card-header">
+        {{ title }}: {{ invoice.description }}
+    </div>
+
+    <div class="card-body">
+        <h4 class="card-title">
+            <a [routerLink]="['/client-list']" class="btn btn-outline-primary btn-xs">
+                &laquo; Return
+            </a>
+        </h4>
+
+        <form #invoiceForm="ngForm" class="mx-4">
+            <div class="mb-4">
+                <div>
+                    <label
+                        for="client"
+                        class="form-label"
+                    >
+                        Client
+                    </label>
+
+                    <div>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="invoice.client"
+                            name="client"
+                            id="client"
+                            value="{{ invoice.client.name }} {{ invoice.client.lastName }}"
+                            required
+                            disabled
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="description" class="form-label">Description</label>
+                <div>
+                    <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="invoice.description"
+                        name="description"
+                        #description="ngModel"
+                        id="description"
+                        required
+                    >
+
+                    <div
+                        class="alert alert-danger"
+                        *ngIf="description.invalid && (description.dirty || description.touched)">
+                        <div *ngIf="description.errors?.['required']">
+                            Description is required
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="observation" class="form-label">Observation</label>
+                <div>
+                    <textarea
+                        class="form-control"
+                        [(ngModel)]="invoice.observation"
+                        name="observation"
+                        id="observation"
+                    ></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <mat-form-field>
+                        <input
+                            type="text"
+                            placeholder="Add Product"
+                            aria-label="Product"
+                            matInput
+                            [formControl]="autocompleteControl"
+                            [matAutocomplete]="auto"
+                        >
+
+                        <mat-autocomplete
+                            #auto="matAutocomplete"
+                            (optionSelected)="selectProduct($event)"
+                        >
+                            <mat-option *ngFor="let product of filterProduct | async" [value]="product">
+                                {{ product.name }}
+                            </mat-option>
+                        </mat-autocomplete>
+
+                        <div class="alert alert-danger" *ngIf="autocompleteControl.invalid && invoiceForm.submitted">
+                            The invoice must have lines
+                        </div>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div *ngIf="invoice.items.length == 0" class="alert alert-info my-4">
+                No lines assigned for the invoice
+            </div>
+
+            <div>
+                <button
+                    class="btn btn-success btn-block mb-4"
+                    role="button"
+                >
+                    Create Invoice
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

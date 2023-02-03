@@ -12,4 +12,8 @@ export class InvoiceService {
     public getInvoiceById(idInvoice: number): Observable<ResponseBody<Invoice>> {
         return this.httpClient.get<ResponseBody<Invoice>>(`${ URL_SERVICE }/invoices/${ idInvoice }`);
     }
+
+    public deleteInvoiceById(idInvoice: number): Observable<ResponseBody<Invoice>> {
+        return this.httpClient.delete<ResponseBody<Invoice>>(`${ URL_SERVICE }/invoices/${ idInvoice }`);
+    }
 }
