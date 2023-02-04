@@ -1,5 +1,5 @@
 import Region from './Region';
-import { Invoice } from "./Invoice";
+import { Invoice } from './Invoice';
 
 interface Client {
     id: number,

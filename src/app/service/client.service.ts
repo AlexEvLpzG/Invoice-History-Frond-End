@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
-import { Observable } from "rxjs";
-import URL_SERVICE from "../shared/helper";
-import {ResponseBody} from "../shared/ResponseBody";
-import { Client } from "../shared/Client";
-import Region from "../shared/Region";
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import URL_SERVICE from '../shared/helper';
+import { ResponseBody } from '../shared/ResponseBody';
+import { Client } from '../shared/Client';
 
 @Injectable({ providedIn: 'root' })
 export class ClientService {

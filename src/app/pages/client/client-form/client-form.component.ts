@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Client, clientInitialState } from "../../../shared/Client";
-import Region from "../../../shared/Region";
-import { ClientService } from "../../../service/client.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { RegionService } from "../../../service/region.service";
-import Swal from "sweetalert2";
+import { Client, clientInitialState } from '../../../shared/Client';
+import Region from '../../../shared/Region';
+import { ClientService } from '../../../service/client.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RegionService } from '../../../service/region.service';
+import Swal from 'sweetalert2';
 
 @Component({
     selector: 'app-client-form',
@@ -12,7 +12,7 @@ import Swal from "sweetalert2";
 })
 export class ClientFormComponent implements OnInit {
     public client: Client = clientInitialState;
-    public title: string = "Create User";
+    public title: string = 'Create User';
     public regions: Region[] = [];
 
     constructor(

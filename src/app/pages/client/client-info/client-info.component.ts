@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import { Client, clientInitialState } from "../../../shared/Client";
-import {ClientService} from "../../../service/client.service";
-import Swal from "sweetalert2";
-import { ActivatedRoute, Router } from "@angular/router";
-import { calculateTotal, Invoice } from "../../../shared/Invoice";
-import {InvoiceService} from "../../../service/invoice.service";
+import { Component, OnInit } from '@angular/core';
+import { Client, clientInitialState } from '../../../shared/Client';
+import { ClientService } from '../../../service/client.service';
+import Swal from 'sweetalert2';
+import { ActivatedRoute, Router } from '@angular/router';
+import { calculateTotal, Invoice } from '../../../shared/Invoice';
+import { InvoiceService } from '../../../service/invoice.service';
 
 @Component({
     selector: 'app-client-info',

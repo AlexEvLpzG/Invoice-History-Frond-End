@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import { Client, clientInitialState } from "../../../shared/Client";
+import { Component, OnInit } from '@angular/core';
+import { Client, clientInitialState } from '../../../shared/Client';
 import Swal from 'sweetalert2';
-import { ClientService } from "../../../service/client.service";
-import { tap } from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {ModalService} from "../../../service/modal.service";
+import { ClientService } from '../../../service/client.service';
+import { tap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ModalService } from '../../../service/modal.service';
 
 @Component({
     selector: 'app-client-list',
@@ -35,13 +35,16 @@ export class ClientListComponent implements OnInit {
 
         this.modalService.notifyUpload.subscribe(client => {
             this.clientList = this.clientList.map(originalClient => {
-                if(client.id == originalClient.id)
-                {
+                if(client.id == originalClient.id) {
                     originalClient.photo = client.photo;
                 }
                 return originalClient;
             });
         });
+
+        if (this.selectedClient.id == 0) {
+            this.modalService.closeModal();
+        }
     }
 
     public deleteClient(client: Client): void {

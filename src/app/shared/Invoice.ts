@@ -1,4 +1,4 @@
-import {Client, clientInitialState} from "./Client";
+import { Client, clientInitialState } from './Client';
 
 interface Product {
     id: number;

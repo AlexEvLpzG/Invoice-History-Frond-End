@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Product } from "../shared/Invoice";
-import URL_SERVICE from "../shared/helper";
-import { Observable } from "rxjs";
-import { ResponseBody } from "../shared/ResponseBody";
+import { HttpClient } from '@angular/common/http';
+import { Product } from '../shared/Invoice';
+import URL_SERVICE from '../shared/helper';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {

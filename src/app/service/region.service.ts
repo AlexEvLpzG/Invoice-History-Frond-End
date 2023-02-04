@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import URL_SERVICE from "../shared/helper";
-import { ResponseBody } from "../shared/ResponseBody";
-import Region from "../shared/Region";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import URL_SERVICE from '../shared/helper';
+import { ResponseBody } from '../shared/ResponseBody';
+import Region from '../shared/Region';
 
 @Injectable({ providedIn: 'root' })
 export class RegionService {

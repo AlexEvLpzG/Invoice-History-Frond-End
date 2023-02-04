@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ModalService} from '../../../service/modal.service';
-import {Client, clientInitialState} from '../../../shared/Client';
+import { Component, Input } from '@angular/core';
+import { ModalService } from '../../../service/modal.service';
+import { Client, clientInitialState } from '../../../shared/Client';
 import Swal from 'sweetalert2';
-import {ClientService} from "../../../service/client.service";
-import {HttpEventType} from "@angular/common/http";
+import { ClientService } from '../../../service/client.service';
+import { HttpEventType } from '@angular/common/http';
 
 @Component({
   selector: 'app-client-modal',
