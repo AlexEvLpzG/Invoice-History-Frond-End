@@ -10,6 +10,6 @@ export class ProductService {
     constructor(private httpClient: HttpClient) {}
 
     public filterProduct(term: string): Observable<Product[]> {
-        return this.httpClient.get<Product[]>(`${ URL_SERVICE }/products/filter/${ term }`);
+        return this.httpClient.get<Product[]>(`${ URL_SERVICE }/products?term=${ term }`);
     }
 }
