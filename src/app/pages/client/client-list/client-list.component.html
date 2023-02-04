@@ -2,7 +2,7 @@
 
 <div class="card mt-4">
     <div class="card-header text-center">
-        <h5 class="mt-1 text-secondary">Client List</h5>
+        <h2 class="mt-1 mb-0 text-secondary">Client List</h2>
     </div>
 
     <div class="card-body text-dark">
@@ -10,7 +10,7 @@
             <button class="btn btn-rounded btn-success" type="button" [routerLink] = "['/client-form']">Create client</button>
         </div>
 
-        <div *ngIf="clientList.length == 0" class="alert alert-warning">
+        <div *ngIf="clientList.length == 0" class="alert alert-info">
             No records in the database
         </div>
 
@@ -44,7 +44,7 @@
                     <td>{{ client.createAt | date: "EEEE dd MMMM yyyy" }}</td>
                     <td>
                         <div class="btn-group btn-group-sm m-1 border-0">
-                            <button type="button" class="btn btn-success" [routerLink]="'/invoice-form/' + client.id">>
+                            <button type="button" class="btn btn-success" [routerLink]="'/invoice-form/' + client.id">
                                 Add Invoice
                             </button>
                             <button type="button" class="btn btn-primary" [routerLink]="'/client-form/' + client.id">

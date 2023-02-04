@@ -21,8 +21,10 @@ import { CurrencyMexPipePipe } from './pipe/currency-mex-pipe.pipe';
 import { InvoiceInfoComponent } from './pages/invoice/invoice-info/invoice-info.component';
 import { InvoiceFormComponent } from './pages/invoice/invoice-form/invoice-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './pages/home/home/home.component';
 
 const routes: Routes = [
+    {path: '', component: HomeComponent},
     {path: 'client-list', component: ClientListComponent},
     {path: 'client-list/page/:page', component: ClientListComponent},
     {path: 'client-form', component: ClientFormComponent},
@@ -44,7 +46,8 @@ const routes: Routes = [
           ClientInfoComponent,
           CurrencyMexPipePipe,
           InvoiceInfoComponent,
-          InvoiceFormComponent
+          InvoiceFormComponent,
+          HomeComponent
     ],
     imports: [
         BrowserModule,

@@ -1,6 +1,8 @@
 <div class="container py-4">
     <div class="card bg-light">
-        <div class="card-header text-center">Client details</div>
+        <div class="card-header text-center">
+            <h2 class="mt-1 mb-0 text-center text-secondary">Client details</h2>
+        </div>
 
         <div class="card-body">
             <ul class="list-group">
@@ -19,7 +21,7 @@
             </button>
 
             <div>
-                <div *ngIf="client.invoiceList.length == 0" class="alert alert-warning my-4">
+                <div *ngIf="client.invoiceList.length == 0" class="alert alert-info my-4">
                     No invoices assigned to the customer {{ client.name }} {{ client.lastName }}
                 </div>
             </div>
